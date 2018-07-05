@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "../mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.cmfz.dao.MenuDao">
+
+    <insert id="insertMenu">
+        insert into t_menu values(#{menuId}, #{menuName}, #{menuCode}, #{menuIcon}, #{menuURL}, #{menuLevel}, #{parentId})
+    </insert>
+
+    <delete id="deleteMenu">
+        delete from t_menu where menuId = #{menuId}
+    </delete>
+
+    <update id="updateMenu">
+        update t_menu set menuName = #{menuName}, menuCode = #{menuCode}, menuIcon = #{menuIcon}, menuURL = #{menuURL},
+            menuLevel = #{menuLevel}, parentId = #{parentId} where menuId = #{menuId}
+    </update>
+
+    <select id="selectAllMenuOne" resultType="Menu">
+        select * from t_menu where menuLevel = 1
+    </select>
+
+    <select id="selectAllMenuByOne" resultType="Menu">
+        select * from t_menu where menuLevel = 2 and parentId = #{menuId}
+    </select>
+
+</mapper>

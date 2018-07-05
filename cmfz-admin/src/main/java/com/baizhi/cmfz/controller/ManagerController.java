@@ -26,7 +26,7 @@ public class ManagerController{
     private ManagerService ms;
 
     @RequestMapping("/login")
-    public String login(String name, String password, boolean statu, HttpServletResponse response) throws Exception {
+    public String login(String name, String password, boolean statu, HttpServletResponse response, HttpServletRequest request) throws Exception {
 
         Manager manager = ms.queryManager(name, password);
 
@@ -35,10 +35,12 @@ public class ManagerController{
                 Cookie cookieName = new Cookie("name", URLEncoder.encode(name, "utf-8"));
                 cookieName.setMaxAge(60*60*24*7);
                 response.addCookie(cookieName);
+
+                request.getSession().setAttribute("name", name);
             }
-            return "forward:/login.jsp";
+            return "main";
         }
-        return "redirect:/login.jsp";
+        return "login";
     }
 
     @RequestMapping("/regist")
@@ -73,7 +75,7 @@ public class ManagerController{
             }
         }
         map.addAttribute("name", name);
-        return "redirect:/login.jsp";
+        return "login";
     }
 
 }

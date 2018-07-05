@@ -18,34 +18,42 @@
 	<script type="text/javascript">
 
         var submitForm = false;
-        function checkCode(){
-            var code = $("#checkcode").val();
-            $.post("<%=request.getContextPath()%>/man/checkCode", {code: code},
-                function (data){
-                    if (data == "验证码正确") {
-                        submitForm = true;
-                    }else{
-                        submitForm = false;
-                    }
-                }
-			);
-        };
+
+        function checkStatu(){
+            var sta = $("#name").val();
+            if(sta != ""){
+                $("#isRememberUsername").attr("checked", "checked");
+			}
+		}
 
             $(function(){
 			//点击更换验证码：
 			$("#captchaImage").click(function(){//点击更换验证码
                 $("#captchaImage").attr("src","<%=request.getContextPath()%>/image?flag="+Math.random());
             });
+
+			$("#checkcode").mouseout(function(){
+                var code = $("#checkcode").val();
+                $.post("<%=request.getContextPath()%>/man/checkCode", {code: code},
+                    function (data){
+                        if (data == "验证码正确") {
+                            submitForm = true;
+                        }else{
+                            alert("验证码错误");
+                            submitForm = false;
+                        }
+                    }
+                );
+			});
 			
 			//  form 表单提交
 			$("#loginForm").bind("submit",function(){
-                checkCode();
                 return submitForm;
             });
 		});
 	</script>
 </head>
-<body>
+<body onload="checkStatu()">
 	
 		<div class="login">
 			<form id="loginForm" action="<%= request.getContextPath()%>/man/login" method="post" >
@@ -60,7 +68,7 @@
 								用户名:
 							</th>
 							<td>
-								<input type="text"  name="name" class="text" value="" maxlength="20"/>
+								<input type="text" id="name" name="name" class="text" value="${name}" maxlength="20"/>
 							</td>
 					  </tr>
 					  <tr>
@@ -89,7 +97,7 @@
 						</th>
 						<td>
 							<label>
-								<input type="checkbox" id="isRememberUsername" value="true" name="statu" /> 记住用户名
+								<input type="checkbox" id="isRememberUsername" name="statu" /> 记住用户名
 							</label>
 						</td>
 					</tr>

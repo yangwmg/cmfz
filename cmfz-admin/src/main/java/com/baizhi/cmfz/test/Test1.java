@@ -19,7 +19,7 @@ public class Test1 {
         ManagerDao md = (ManagerDao)ac.getBean("managerDao");
 
         Manager manager = new Manager();
-        manager.setName("tom");
+        manager.setName("王晨");
         String salt = new CreateValidateCodeUtil(200,50,6).getCode();
         manager.setPassword(EncryptionUtil.encryptionCode("123"+salt));
         manager.setSalt(salt);

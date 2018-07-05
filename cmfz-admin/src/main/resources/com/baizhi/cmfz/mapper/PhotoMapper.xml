@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "../mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.cmfz.dao.PhotoDao">
+
+    <insert id="insertPhoto">
+        insert into t_photo values(#{photoId}, #{photoName}, #{description}, #{status}, #{uploadTime})
+    </insert>
+
+    <delete id="deletePhoto">
+        delete from t_photo where photoId = #{photoId}
+    </delete>
+
+    <update id="updatePhoto">
+        update t_photo set photoPath = #{photoPath}, description = #{description}, status = #{status}, uploadTime = #{uploadTime} where photoId = #{photoId}
+    </update>
+
+    <select id="count" resultType="int">
+        select count(*) from t_photo
+    </select>
+
+    <select id="selectAllPhoto" resultType="Photo">
+        select * from (select t.*,rownum RN from t_photo t) where RN between #{begin} and #{end}
+    </select>
+
+</mapper>
