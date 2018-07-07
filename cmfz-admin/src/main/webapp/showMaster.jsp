@@ -9,6 +9,15 @@
 			striped:true,//斑马线
 			pagination:true,//分页工具栏
 			pageList:[2,4,6,8,10],
+            view: detailview,
+            detailFormatter: function(rowIndex, rowData){
+                return '<table><tr>' +
+                    '<td rowspan=2 style="border:0"><img src="${pageContext.request.contextPath}/img/' + rowData.masterPhoto + '.jpg" style="height:50px;"></td>' +
+                    '<td style="border:0">' +
+                    '<p>Attribute: ' + rowData.masterName + '</p>' +
+                    '</td>' +
+                    '</tr></table>';
+            }
 		});
 		
 		$("#masteradd").linkbutton({
