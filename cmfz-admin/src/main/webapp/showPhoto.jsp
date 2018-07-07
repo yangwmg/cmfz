@@ -12,7 +12,7 @@
             view: detailview,
             detailFormatter: function(rowIndex, rowData){
                 return '<table><tr>' +
-                    '<td rowspan=2 style="border:0"><img src="${pageContext.request.contextPath}/img/' + rowData.photoName + '.jpg" style="height:50px;"></td>' +
+                    '<td rowspan=2 style="border:0"><img src="${pageContext.request.contextPath}/upload/'+rowData.photoName+'" style="height:50px;"></td>' +
                     '<td style="border:0">' +
                     '<p>Attribute: ' + rowData.photoName + '</p>' +
                     '<p>Status: ' + rowData.status + '</p>' +

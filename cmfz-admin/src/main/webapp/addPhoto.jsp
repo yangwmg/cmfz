@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <script type="text/javascript">		
 	$(function(){
-        /*$("#p1").filebox({
-            onChange:function(){
-                alert("内容改变");
-                console.log($("#p1").val());
-                $("#p2").value = $("#p1").val();
-            },
-        });*/
+
 	});
 </script>
 		
@@ -22,7 +16,5 @@
 		</select>
 		<br><br>
 		上传轮播图<input id="p1" class="easyui-filebox" data-options="buttonText:'选择图片',width:200" name="myFile"/>
-		<br><br>
-		轮播图名称<input id="p2" class="easyui-textbox" data-options="width:200" name="photoName" />
 	</div>
 </form>

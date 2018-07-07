@@ -21,8 +21,6 @@
 		<br><br>
 		上师图片<input id="m1" class="easyui-filebox" data-options="buttonText:'选择图片',width:200" name="myFile" />
 		<br><br>
-		图片名称<input id="m2" class="easyui-textbox" data-options="width:200" name="masterPhoto" />
-		<br><br>
 		上师简介<input class="easyui-textbox" data-options="width:200" name="masterSummery" />
 	</div>
 </form>

@@ -47,14 +47,16 @@ public class PhotoController {
 
     @RequestMapping(value="/add",method = RequestMethod.POST)
     @ResponseBody
-    public void add(MultipartFile myFile, HttpSession session, @RequestParam("description")String description, @RequestParam("status")Integer status, @RequestParam("photoName")String photoName) throws Exception {
+    public void add(MultipartFile myFile, HttpSession session, @RequestParam("description")String description, @RequestParam("status")Integer status) throws Exception {
 
         String realPath = session.getServletContext().getRealPath("/");
         int lastIndexOf = realPath.lastIndexOf("\\");
         String subString1 = realPath.substring(0, lastIndexOf);
         lastIndexOf = subString1.lastIndexOf("\\");
         String subString2 = subString1.substring(0, lastIndexOf);
-        String uploadPath = subString2 + "\\upload\\photos";
+        String uploadPath = subString2 + "\\upload";
+
+        String photoName = myFile.getOriginalFilename();
 
         myFile.transferTo(new File(uploadPath + "/" +photoName));
 

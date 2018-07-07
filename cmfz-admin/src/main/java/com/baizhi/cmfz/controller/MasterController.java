@@ -55,14 +55,16 @@ public class MasterController {
 
     @RequestMapping(value="/add", method = RequestMethod.POST)
     @ResponseBody
-    public void add(MultipartFile myFile, HttpSession session, @RequestParam("masterId")String masterId, @RequestParam("masterName")String masterName, @RequestParam("masterAge")Integer masterAge, @RequestParam("masterPhoto")String masterPhoto, @RequestParam("masterSummery")String masterSummery) throws Exception {
+    public void add(MultipartFile myFile, HttpSession session, @RequestParam("masterId")String masterId, @RequestParam("masterName")String masterName, @RequestParam("masterAge")Integer masterAge, @RequestParam("masterSummery")String masterSummery) throws Exception {
 
         String realPath = session.getServletContext().getRealPath("/");
         int lastIndexOf = realPath.lastIndexOf("\\");
         String subString1 = realPath.substring(0, lastIndexOf);
         lastIndexOf = subString1.lastIndexOf("\\");
         String subString2 = subString1.substring(0, lastIndexOf);
-        String uploadPath = subString2 + "\\upload\\masters";
+        String uploadPath = subString2 + "\\upload";
+
+        String masterPhoto = myFile.getOriginalFilename();
 
         myFile.transferTo(new File(uploadPath + "/" +masterPhoto));
 
