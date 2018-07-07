@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class PhotoServiceImpl implements PhotoService {
     @Transactional(propagation= Propagation.SUPPORTS, readOnly=true)
     public Map<String, Object> queryPhoto(Integer nowPage, Integer pageSize) {
 
-        List<Photo> photos = pd.selectAllPhoto((nowPage-1)*pageSize+1, nowPage*pageSize);
+        List<Photo> photos = pd.selectAllPhoto((nowPage-1)*pageSize, nowPage*pageSize-1);
 
         int count = pd.count();
 
@@ -39,7 +40,14 @@ public class PhotoServiceImpl implements PhotoService {
     }
 
     @Override
-    public boolean addPhoto(Photo photo) {
+    public boolean addPhoto(String description, Integer status, String photoName) {
+
+        Photo photo = new Photo();
+
+        photo.setPhotoName(photoName);
+        photo.setDescription(description);
+        photo.setStatus(status);
+        photo.setUploadTime(new Date());
 
         int result = pd.insertPhoto(photo);
 
@@ -61,7 +69,13 @@ public class PhotoServiceImpl implements PhotoService {
     }
 
     @Override
-    public boolean modifyPhoto(Photo photo) {
+    public boolean modifyPhoto(String photoId, String description, Integer status, String photoName) {
+
+        Photo photo = pd.selectPhoto(photoId);
+
+        photo.setPhotoName(photoName);
+        photo.setDescription(description);
+        photo.setStatus(status);
 
         int result = pd.updatePhoto(photo);
 

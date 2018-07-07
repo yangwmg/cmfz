@@ -1,5 +1,7 @@
 package com.baizhi.cmfz.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
@@ -13,6 +15,7 @@ public class Photo implements Serializable{
     private String photoName;
     private String description;
     private Integer status;
+    @JSONField(format="yyyy-MM-dd hh:mm:ss")
     private Date uploadTime;
 
     public Photo() {

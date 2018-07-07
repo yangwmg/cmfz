@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "../mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.cmfz.dao.MasterDao">
+
+    <insert id="insertMaster">
+        insert into t_master values(#{masterId}, #{masterName}, #{masterAge}, #{masterPhoto}, #{masterSummery})
+    </insert>
+
+    <delete id="deleteMaster">
+        delete from t_master where masterId = #{masterId}
+    </delete>
+
+    <update id="updateMaster">
+        update t_master set masterName = #{masterName}, masterAge = #{masterAge}, masterPhoto = #{masterPhoto}, masterSummery = #{masterSummery} where masterId = #{masterId}
+    </update>
+
+    <select id="count" resultType="int">
+        select count(*) from t_master
+    </select>
+
+    <select id="countByName" resultType="int">
+        select count(*) from t_master where masterName like #{value}
+    </select>
+
+    <select id="selectMaster" resultType="Master">
+        select * from t_master where masterId = #{masterId}
+    </select>
+
+    <select id="selectMasterByName" resultType="Master">
+        select * from t_master where masterName like #{value} limit #{begin}, #{end}
+    </select>
+
+    <select id="selectAllMaster" resultType="Master">
+        select * from t_master limit #{begin}, #{end}
+    </select>
+
+</mapper>

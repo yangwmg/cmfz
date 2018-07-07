@@ -21,5 +21,7 @@ public interface PhotoDao {
 
     public int count();
 
+    public Photo selectPhoto(String photoId);
+
     public List<Photo> selectAllPhoto(@Param("begin")Integer begin, @Param("end")Integer end);
 }

@@ -11,15 +11,19 @@
     </delete>
 
     <update id="updatePhoto">
-        update t_photo set photoPath = #{photoPath}, description = #{description}, status = #{status}, uploadTime = #{uploadTime} where photoId = #{photoId}
+        update t_photo set photoName = #{photoName}, description = #{description}, status = #{status} where photoId = #{photoId}
     </update>
 
     <select id="count" resultType="int">
         select count(*) from t_photo
     </select>
 
+    <select id="selectPhoto" resultType="Photo">
+        select * from t_photo where photoId = #{photoId}
+    </select>
+
     <select id="selectAllPhoto" resultType="Photo">
-        select * from (select t.*,rownum RN from t_photo t) where RN between #{begin} and #{end}
+        select * from t_photo limit #{begin}, #{end}
     </select>
 
 </mapper>

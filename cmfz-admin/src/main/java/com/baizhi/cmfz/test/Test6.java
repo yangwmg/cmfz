@@ -4,16 +4,17 @@ import com.baizhi.cmfz.dao.PhotoDao;
 import com.baizhi.cmfz.entity.Menu;
 import com.baizhi.cmfz.entity.Photo;
 import com.baizhi.cmfz.service.MenuService;
+import com.baizhi.cmfz.service.PhotoService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2018/7/4.
  */
-public class Test5 {
+public class Test6 {
 
     public static void main(String[] args) {
 
@@ -21,11 +22,14 @@ public class Test5 {
 
         PhotoDao pd = (PhotoDao)ac.getBean("photoDao");
 
-        Photo photo = new Photo();
-        photo.setPhotoName("l1.jpg");
-        photo.setDescription("寺庙风景1");
-        photo.setUploadTime(new Date());
+        List<Photo> photos = pd.selectAllPhoto(1, 5);
+        int count = pd.count();
 
-        pd.insertPhoto(photo);
+        System.out.println(count);
+        System.out.println(photos);
+        for(Photo photo : photos){
+            System.out.println("-----");
+            System.out.println(photo);
+        }
     }
 }
