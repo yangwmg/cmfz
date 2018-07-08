@@ -26,7 +26,7 @@ public class MasterServiceImpl implements MasterService {
     @Transactional(propagation= Propagation.SUPPORTS, readOnly=true)
     public Map<String, Object> queryMaster(Integer nowPage, Integer pageSize) {
 
-        List<Master> masters = md.selectAllMaster((nowPage-1)*pageSize, nowPage*pageSize-1);
+        List<Master> masters = md.selectAllMaster1((nowPage-1)*pageSize, nowPage*pageSize-1);
 
         int count = md.count();
 
@@ -36,6 +36,15 @@ public class MasterServiceImpl implements MasterService {
         map.put("rows", masters);
 
         return map;
+    }
+
+    @Override
+    @Transactional(propagation= Propagation.SUPPORTS, readOnly=true)
+    public List<Master> queryMaster() {
+
+        List<Master> masters = md.selectAllMaster2();
+
+        return masters;
     }
 
     @Override
@@ -62,6 +71,17 @@ public class MasterServiceImpl implements MasterService {
         Master master = new Master(masterId, masterName, masterAge, masterPhoto, masterSummery);
 
         int result = md.insertMaster(master);
+
+        if(result != 0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean addMasters(List<Master> masters) {
+
+        int result = md.insertMasters(masters);
 
         if(result != 0){
             return true;

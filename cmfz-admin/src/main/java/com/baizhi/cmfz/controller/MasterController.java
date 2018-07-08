@@ -1,6 +1,12 @@
 package com.baizhi.cmfz.controller;
 
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.ExcelImportUtil;
+import cn.afterturn.easypoi.excel.entity.ExportParams;
+import cn.afterturn.easypoi.excel.entity.ImportParams;
+import com.baizhi.cmfz.entity.Master;
 import com.baizhi.cmfz.service.MasterService;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -71,4 +80,32 @@ public class MasterController {
         ms.addMaster(masterId, masterName, masterAge, masterPhoto, masterSummery);
     }
 
+    @RequestMapping(value="/addMore", method = RequestMethod.POST)
+    @ResponseBody
+    public void addMore(MultipartFile myFile) throws Exception {
+
+        ImportParams importParams = new ImportParams();
+
+        List<Master> masters = ExcelImportUtil.importExcel(myFile.getInputStream(), Master.class, importParams);
+
+        ms.addMasters(masters);
+    }
+
+    @RequestMapping("/export")
+    public void export(HttpServletResponse response) throws Exception {
+
+        List<Master> masters = ms.queryMaster();
+
+        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("c118","上师信息表"), Master.class, masters);
+
+        ServletOutputStream out = response.getOutputStream();
+
+        String fileName = new String("上师信息.xls".getBytes(), "iso-8859-1");
+
+        response.setContentType("application/vnd.ms-excel");
+        response.setHeader("content-disposition", "attachment;filename="+fileName);
+
+        workbook.write(out);
+        out.close();
+    }
 }

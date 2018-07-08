@@ -1,14 +1,23 @@
 package com.baizhi.cmfz.entity;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
+
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2018/7/6.
  */
-public class Master {
+public class Master implements Serializable{
 
+    @Excel(name="上师编号")
     private String masterId;
+    @Excel(name="上师法名")
     private String masterName;
+    @Excel(name="年龄")
     private Integer masterAge;
+    @Excel(name="上师图片")
     private String masterPhoto;
+    @Excel(name="上师简介")
     private String masterSummery;
 
     public Master() {

@@ -6,6 +6,13 @@
         insert into t_master values(#{masterId}, #{masterName}, #{masterAge}, #{masterPhoto}, #{masterSummery})
     </insert>
 
+    <insert id="insertMasters">
+        insert into t_master values
+            <foreach collection="masters" separator="," item="master">
+                (#{master.masterId}, #{master.masterName}, #{master.masterAge}, #{master.masterPhoto}, #{master.masterSummery})
+            </foreach>
+    </insert>
+
     <delete id="deleteMaster">
         delete from t_master where masterId = #{masterId}
     </delete>
@@ -22,16 +29,16 @@
         select count(*) from t_master where masterName like #{value}
     </select>
 
-    <select id="selectMaster" resultType="Master">
-        select * from t_master where masterId = #{masterId}
-    </select>
-
     <select id="selectMasterByName" resultType="Master">
         select * from t_master where masterName like #{value} limit #{begin}, #{end}
     </select>
 
-    <select id="selectAllMaster" resultType="Master">
+    <select id="selectAllMaster1" resultType="Master">
         select * from t_master limit #{begin}, #{end}
+    </select>
+
+    <select id="selectAllMaster2" resultType="Master">
+        select * from t_master
     </select>
 
 </mapper>

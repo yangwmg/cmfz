@@ -1,10 +1,15 @@
 package com.baizhi.cmfz.service;
 
+import com.baizhi.cmfz.entity.Master;
+
+import java.util.List;
 import java.util.Map;
 
 public interface MasterService {
 
 	public Map<String, Object> queryMaster(Integer nowPage, Integer pageSize);
+
+	public List<Master> queryMaster();
 
 	public Map<String, Object> queryMasterByName(Integer nowPage, Integer pageSize, String value);
 
@@ -14,4 +19,5 @@ public interface MasterService {
 	
 	public boolean modifyMaster(String masterId, String masterName, Integer masterAge, String masterPhoto, String masterSummery);
 
+	public boolean addMasters(List<Master> masters);
 }
