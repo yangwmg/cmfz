@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 /**
  * Created by Administrator on 2018/7/8.
  */
@@ -24,6 +26,7 @@ public class ArticleServiceImpl implements ArticleService{
         article.setArticleName(articleName);
         article.setAuthor(author);
         article.setContent(content);
+        article.setReleaseTime(new Date());
 
         int result = ad.insertArticle(article);
 

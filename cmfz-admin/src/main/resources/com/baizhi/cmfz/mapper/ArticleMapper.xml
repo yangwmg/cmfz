@@ -3,7 +3,7 @@
 <mapper namespace="com.baizhi.cmfz.dao.ArticleDao">
 
     <insert id="insertArticle">
-        insert into t_article values(#{articleId}, #{articleName}, #{author}, #{content}, #{repleaseTime})
+        insert into t_article values(#{articleId}, #{articleName}, #{author}, #{content}, #{releaseTime})
     </insert>
 
 </mapper>

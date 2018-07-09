@@ -11,6 +11,8 @@ public interface MasterService {
 
 	public List<Master> queryMaster();
 
+	public List<Master> queryMaster2();
+
 	public Map<String, Object> queryMasterByName(Integer nowPage, Integer pageSize, String value);
 
 	public boolean addMaster(String masterId, String masterName, Integer masterAge, String masterPhoto, String masterSummery);

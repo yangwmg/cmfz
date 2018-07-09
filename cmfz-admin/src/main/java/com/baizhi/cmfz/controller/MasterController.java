@@ -39,12 +39,17 @@ public class MasterController {
         return ms.queryMaster(nowPage, pageSize);
     }
 
+    @RequestMapping("/allMaster2")
+    @ResponseBody
+    public List<Master> allMaster2() throws Exception {
+
+        return ms.queryMaster2();
+    }
+
     @RequestMapping("/showMasterByName")
     @ResponseBody
     public Map<String, Object> showMasterByName(@RequestParam("page")Integer nowPage, @RequestParam("rows")Integer pageSize, @RequestParam("value")String value) throws Exception {
-        System.out.println(nowPage);
-        System.out.println(pageSize);
-        System.out.println(value);
+
         return ms.queryMasterByName(nowPage, pageSize, value);
     }
 

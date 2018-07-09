@@ -49,6 +49,15 @@ public class MasterServiceImpl implements MasterService {
 
     @Override
     @Transactional(propagation= Propagation.SUPPORTS, readOnly=true)
+    public List<Master> queryMaster2() {
+
+        List<Master> masters = md.selectAllMaster3();
+
+        return masters;
+    }
+
+    @Override
+    @Transactional(propagation= Propagation.SUPPORTS, readOnly=true)
     public Map<String, Object> queryMasterByName(Integer nowPage, Integer pageSize, String value) {
 
         String v = "%"+value+"%";

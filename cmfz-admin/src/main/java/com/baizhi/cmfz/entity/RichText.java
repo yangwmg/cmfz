@@ -1,6 +1,7 @@
 package com.baizhi.cmfz.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by Administrator on 2018/7/8.
@@ -8,7 +9,7 @@ import java.io.Serializable;
 public class RichText implements Serializable{
 
     private Integer errno;
-    private String[] data;
+    private ArrayList<String> data;
 
     public Integer getErrno() {
         return errno;
@@ -18,11 +19,11 @@ public class RichText implements Serializable{
         this.errno = errno;
     }
 
-    public String[] getData() {
+    public ArrayList<String> getData() {
         return data;
     }
 
-    public void setData(String[] data) {
+    public void setData(ArrayList<String> data) {
         this.data = data;
     }
 }

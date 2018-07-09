@@ -2,7 +2,7 @@
 <script type="text/javascript">
 	$(function(){
 		$("#masterfm").datagrid({
-			url:"http://localhost:8080/cmfz-admin/master/allMaster",
+			url:"${pageContext.request.contextPath}/master/allMaster",
 			fitColumns:true,
 			singleSelect:true,
 			toolbar:"#mastertb",
@@ -37,7 +37,7 @@
 						iconCls:"icon-ok",
 						handler:function(){
 							$("#masterff").form("submit", {
-								url:"http://localhost:8080/cmfz-admin/master/add",
+								url:"${pageContext.request.contextPath}/master/add",
 								onSubmit:function(){
 									return true;
 								},
@@ -45,7 +45,7 @@
 									$("#masterdialog").dialog("close");
 									$("#masterff").form("clear");
 									$("#masterfm").datagrid({
-										url:"http://localhost:8080/cmfz-admin/master/allMaster",
+										url:"${pageContext.request.contextPath}/master/allMaster",
 										fitColumns:true,
 										singleSelect:true,
 										toolbar:"#mastertb",
@@ -86,7 +86,7 @@
 						iconCls:"icon-save",
 						handler:function(){
 							$("#masterff").form("submit", {
-								url:"http://localhost:8080/cmfz-admin/master/update",
+								url:"${pageContext.request.contextPath}/master/update",
 								onSubmit:function(param){
 								    param.photoId = rowData.photoId;
 									return true;
@@ -95,7 +95,7 @@
 									$("#masterdialog").dialog("close");
 									$("#masterff").form("clear");
 									$("#masterfm").datagrid({
-										url:"http://localhost:8080/cmfz-admin/master/allMaster",
+										url:"${pageContext.request.contextPath}/master/allMaster",
 										fitColumns:true,
 										singleSelect:true,
 										toolbar:"#mastertb",
@@ -120,65 +120,65 @@
 				});
 			},
 		});
-		
-		$("#masterremove").linkbutton({
-			text:"删除",
-			onClick:function(){
-				var rowData = $("#masterfm").datagrid("getSelected");
-				console.log(rowData);
-				$("#masterdialog").dialog({
-				    title:"删除",
-				    width:425,
-				    height:249,
-				    collapsible:true,
-				    minimizable:true,
-				    maximizable:true,
-				    resizable:true,
 
-					buttons:[{
-						text:"确定",
-						iconCls:"icon-ok",
-						handler:function(){
-							$("#masterff").form("submit", {
-								url:"http://localhost:8080/cmfz-admin/master/remove",
-								onSubmit:function(){
-									return true;
-								},
-								success:function(data){
-									$("#masterdialog").dialog("close");
-									$("#masterff").form("clear");
-									$("#masterfm").datagrid({
-										url:"http://localhost:8080/cmfz-admin/master/allMaster",
-										fitColumns:true,
-										singleSelect:true,
-										toolbar:"#mastertb",
-										striped:true,//斑马线
-										pagination:true,//分页工具栏
-										pageList:[2,4,6,8,10],
-									});
-								},
-							});
-						},
-					},{
-						text:"取消",
-						iconCls:"icon-error",
-						handler:function(){
-							$("#masterdialog").dialog("close");
-						},
-					}],
-					href:"${pageContext.request.contextPath }/removeMaster.jsp",
-					onLoad:function(){
-						$("#masterff").form("load",rowData);
-					},
-				});
-			},
-		});
+		$("#masteraddmore").linkbutton({
+            onClick:function(){
+                $("#masterform").dialog({
+                    title:"批量添加上师",
+                    width:425,
+                    height:249,
+                    collapsible:true,
+                    minimizable:true,
+                    maximizable:true,
+                    resizable:true,
+
+                    buttons:[{
+                        text:"提交",
+                        iconCls:"icon-ok",
+                        handler:function(){
+                            $("#masterff2").form("submit", {
+                                url:"${pageContext.request.contextPath}/master/addMore",
+                                onSubmit:function(){
+                                    return true;
+                                },
+                                success:function(data){
+                                    $("#masterform").dialog("close");
+                                    $("#masterff2").form("clear");
+                                    $("#masterfm").datagrid({
+                                        url:"${pageContext.request.contextPath}/master/allMaster",
+                                        fitColumns:true,
+                                        singleSelect:true,
+                                        toolbar:"#mastertb",
+                                        striped:true,//斑马线
+                                        pagination:true,//分页工具栏
+                                        pageList:[2,4,6,8,10],
+                                    });
+                                },
+                            });
+                        },
+                    },{
+                        text:"取消",
+                        iconCls:"icon-error",
+                        handler:function(){
+                            $("#masterform").dialog("close");
+                        },
+                    }],
+                    href:"${pageContext.request.contextPath}/masterForm.jsp",
+                });
+            },
+        });
+
+		$("#masterexport").linkbutton({
+            onClick:function(){
+                window.location.href="${pageContext.request.contextPath}/master/export";
+            },
+        });
 	});
 
     function qq(value) {
         console.log("模糊查询");
         $("#masterfm").datagrid({
-            url:"http://localhost:8080/cmfz-admin/master/showMasterByName?value="+value,
+            url:"${pageContext.request.contextPath}/master/showMasterByName?value="+value,
             fitColumns:true,
             singleSelect:true,
             toolbar:"#mastertb",
@@ -205,10 +205,10 @@
 		data-options="iconCls:'icon-add',plain:true,text:'新增上师'"></a>
     <a href="#" class="easyui-linkbutton" id="masterupdate"
        data-options="iconCls:'icon-edit',plain:true,text:'修改上师信息'"></a>
-    <a href="#" class="easyui-linkbutton" id="masterremove"
-       data-options="iconCls:'icon-cancel',plain:true,text:'删除'"></a>
     <a href="#" class="easyui-linkbutton" id="masteraddmore"
        data-options="iconCls:'icon-add',plain:true,text:'批量插入'"></a>
+    <a href="#" class="easyui-linkbutton" id="masterexport"
+       data-options="iconCls:'icon-edit',plain:true,text:'信息导出'"></a>
     <input id="masterss" class="easyui-searchbox" style="width:300px"
            data-options="searcher:qq,prompt:'请您输入需要模糊查询的内容',menu:'#mastermm'"></input>
     <div id="mastermm" style="width:120px">
@@ -216,3 +216,4 @@
     </div>
 </div>
 <div id="masterdialog"></div>
+<div id="masterform"></div>

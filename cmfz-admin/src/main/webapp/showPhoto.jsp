@@ -87,7 +87,7 @@
 						iconCls:"icon-save",
 						handler:function(){
 							$("#photoff").form("submit", {
-								url:"http://localhost:8080/cmfz-admin/photo/update",
+								url:"${pageContext.request.contextPath}/photo/update",
 								onSubmit:function(param){
 								    param.photoId = rowData.photoId;
 									return true;
@@ -96,7 +96,7 @@
 									$("#photodialog").dialog("close");
 									$("#photoff").form("clear");
 									$("#photofm").datagrid({
-										url:"http://localhost:8080/cmfz-admin/photo/allPhoto",
+										url:"${pageContext.request.contextPath}/photo/allPhoto",
 										fitColumns:true,
 										singleSelect:true,
 										toolbar:"#phototb",
@@ -141,7 +141,7 @@
 						iconCls:"icon-ok",
 						handler:function(){
 							$("#photoff").form("submit", {
-								url:"http://localhost:8080/cmfz-admin/photo/remove",
+								url:"${pageContext.request.contextPath}/photo/remove",
 								onSubmit:function(){
 									return true;
 								},
@@ -149,7 +149,7 @@
 									$("#photodialog").dialog("close");
 									$("#photoff").form("clear");
 									$("#photofm").datagrid({
-										url:"http://localhost:8080/cmfz-admin/photo/allPhoto",
+										url:"${pageContext.request.contextPath}/photo/allPhoto",
 										fitColumns:true,
 										singleSelect:true,
 										toolbar:"#phototb",

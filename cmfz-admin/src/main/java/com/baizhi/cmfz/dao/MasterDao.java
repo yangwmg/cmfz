@@ -29,4 +29,6 @@ public interface MasterDao {
     public List<Master> selectAllMaster1(@Param("begin") Integer begin, @Param("end") Integer end);
 
     public List<Master> selectAllMaster2();
+
+    public List<Master> selectAllMaster3();
 }

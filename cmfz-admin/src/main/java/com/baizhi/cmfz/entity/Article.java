@@ -20,7 +20,6 @@ public class Article implements Serializable{
 
     public Article() {
         this.articleId = UUID.randomUUID().toString().replace("-", "");
-        this.releaseTime = new Date();
     }
 
     public Article(String articleName, String author, String content) {
