@@ -110,9 +110,13 @@ public class MasterServiceImpl implements MasterService {
     }
 
     @Override
-    public boolean modifyMaster(String masterId, String masterName, Integer masterAge, String masterPhoto, String masterSummery) {
+    public boolean modifyMaster(String masterId, String masterName, Integer masterAge, String masterSummery) {
 
-        Master master = new Master(masterId, masterName, masterAge, masterPhoto, masterSummery);
+        Master master = md.selectMaster(masterId);
+
+        master.setMasterName(masterName);
+        master.setMasterAge(masterAge);
+        master.setMasterSummery(masterSummery);
 
         int result = md.updateMaster(master);
 

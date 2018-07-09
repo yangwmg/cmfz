@@ -27,7 +27,6 @@ public class PhotoController {
     @ResponseBody
     public Map<String, Object> allPhoto(@RequestParam("page")Integer nowPage, @RequestParam("rows")Integer pageSize) throws Exception {
 
-        System.out.println(ps.queryPhoto(nowPage, pageSize));
         return ps.queryPhoto(nowPage, pageSize);
     }
 

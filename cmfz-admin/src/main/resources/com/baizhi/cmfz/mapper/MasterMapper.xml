@@ -45,4 +45,8 @@
         select masterId, masterName from t_master
     </select>
 
+    <select id="selectMaster" resultType="Master">
+        select * from t_master where masterId = #{masterId}
+    </select>
+
 </mapper>

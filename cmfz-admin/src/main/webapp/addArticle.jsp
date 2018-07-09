@@ -34,7 +34,7 @@
     <br><br>
     文章作者:
     <input id="articlebox" class="easyui-combobox" name="author"
-           data-options="valueField:'masterId',textField:'masterName',url:'${pageContext.request.contextPath}/master/allMaster2'"/>
+           data-options="valueField:'masterName',textField:'masterName',url:'${pageContext.request.contextPath}/master/allMaster2'"/>
     <br><br>
     文章状态:<input id="text" class="easyui-switchbutton" data-options="width:60,onText:'上架',offText:'下架'" name="" />
     <br><br>

@@ -19,7 +19,7 @@ public interface MasterService {
 	
 	public boolean removeMaster(String masterId);
 	
-	public boolean modifyMaster(String masterId, String masterName, Integer masterAge, String masterPhoto, String masterSummery);
+	public boolean modifyMaster(String masterId, String masterName, Integer masterAge, String masterSummery);
 
 	public boolean addMasters(List<Master> masters);
 }

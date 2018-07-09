@@ -24,6 +24,8 @@ public interface MasterDao {
 
     public int countByName(@Param("value")String value);
 
+    public Master selectMaster(String masterId);
+
     public List<Master> selectMasterByName(@Param("begin") Integer begin, @Param("end") Integer end, @Param("value")String value);
 
     public List<Master> selectAllMaster1(@Param("begin") Integer begin, @Param("end") Integer end);

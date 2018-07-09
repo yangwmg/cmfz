@@ -88,7 +88,7 @@
 							$("#masterff").form("submit", {
 								url:"${pageContext.request.contextPath}/master/update",
 								onSubmit:function(param){
-								    param.photoId = rowData.photoId;
+								    param.masterId = rowData.masterId;
 									return true;
 								},
 								success:function(data){
@@ -113,7 +113,7 @@
 							$("#masterdialog").dialog("close");
 						},
 					}],
-					href:"${pageContext.request.contextPath }/addMaster.jsp",
+					href:"${pageContext.request.contextPath }/updateMaster.jsp",
 					onLoad:function(){
 						$("#masterff").form("load",rowData);
 					},

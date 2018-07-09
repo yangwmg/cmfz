@@ -6,4 +6,16 @@
         insert into t_article values(#{articleId}, #{articleName}, #{author}, #{content}, #{releaseTime})
     </insert>
 
+    <select id="selectArticle" resultType="Article">
+        select * from t_article where articleId = #{articleId}
+    </select>
+
+    <select id="selectAllArticle" resultType="Article">
+        select * from t_article limit #{begin}, #{end}
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from t_article
+    </select>
+
 </mapper>

@@ -62,9 +62,9 @@ public class MasterController {
 
     @RequestMapping(value="/update")
     @ResponseBody
-    public void update(@RequestParam("masterId")String masterId, @RequestParam("masterName")String masterName, @RequestParam("masterAge")Integer masterAge, @RequestParam("masterPhoto")String masterPhoto, @RequestParam("masterSummery")String masterSummery) throws Exception {
+    public void update(@RequestParam("masterId")String masterId, @RequestParam("masterName")String masterName, @RequestParam("masterAge")Integer masterAge, @RequestParam("masterSummery")String masterSummery) throws Exception {
 
-        ms.modifyMaster(masterId, masterName, masterAge, masterPhoto, masterSummery);
+        ms.modifyMaster(masterId, masterName, masterAge, masterSummery);
     }
 
     @RequestMapping(value="/add", method = RequestMethod.POST)

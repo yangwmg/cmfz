@@ -1,5 +1,6 @@
 package com.baizhi.cmfz.controller;
 
+import com.baizhi.cmfz.entity.Article;
 import com.baizhi.cmfz.entity.RichText;
 import com.baizhi.cmfz.service.ArticleService;
 import org.apache.commons.io.FilenameUtils;
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -24,6 +26,20 @@ public class ArticleController {
 
     @Autowired
     private ArticleService as;
+
+    @RequestMapping("/allArticle")
+    @ResponseBody
+    public Map<String, Object> allArticle(@RequestParam("page")Integer nowPage, @RequestParam("rows")Integer pageSize) throws Exception {
+
+        return as.queryArticle(nowPage, pageSize);
+    }
+
+    @RequestMapping("/query")
+    @ResponseBody
+    public String query(@RequestParam("articleId")String articleId) throws Exception {
+
+        return as.queryArticle(articleId).getContent();
+    }
 
     @RequestMapping(value="/add")
     @ResponseBody
