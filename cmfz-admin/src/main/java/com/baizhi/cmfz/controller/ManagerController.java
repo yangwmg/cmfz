@@ -36,9 +36,19 @@ public class ManagerController{
                 cookieName.setMaxAge(60*60*24*7);
                 response.addCookie(cookieName);
 
-                request.getSession().setAttribute("name", name);
+                request.getSession().setAttribute("manager", manager);
             }
             return "main";
+        }
+        return "login";
+    }
+
+    @RequestMapping("/loginOut")
+    public String loginOut(HttpServletRequest request) throws Exception {
+
+        Manager manager = (Manager)request.getSession().getAttribute("name");
+        if(manager != null){
+            request.getSession().setAttribute("manager", null);
         }
         return "login";
     }

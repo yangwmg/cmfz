@@ -176,7 +176,6 @@
 	});
 
     function qq(value) {
-        console.log("模糊查询");
         $("#masterfm").datagrid({
             url:"${pageContext.request.contextPath}/master/showMasterByName?value="+value,
             fitColumns:true,

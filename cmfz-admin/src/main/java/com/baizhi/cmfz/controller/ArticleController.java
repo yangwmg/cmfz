@@ -37,7 +37,7 @@ public class ArticleController {
     @RequestMapping("/query")
     @ResponseBody
     public String query(@RequestParam("articleId")String articleId) throws Exception {
-
+        System.out.println(as.queryArticle(articleId).getContent());
         return as.queryArticle(articleId).getContent();
     }
 

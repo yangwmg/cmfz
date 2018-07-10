@@ -2,6 +2,7 @@ package com.baizhi.cmfz.utils;
 
 import com.baizhi.cmfz.dao.LogDao;
 import com.baizhi.cmfz.entity.Log;
+import com.baizhi.cmfz.entity.Manager;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -46,11 +47,11 @@ public class MyLog {
         HttpSession session = request.getSession();
 
         // 获取用户名
-        String name = (String) session.getAttribute("name");
+        Manager manager = (Manager) session.getAttribute("manager");
 
         Log log = new Log();
 
-        log.setUser(name);
+        log.setUser(manager.getName());
         log.setTime(new Date());
 
         String totalArg = null;
@@ -80,8 +81,10 @@ public class MyLog {
 
         // 获取方法所在的类
         String oldName = methodSignature.getDeclaringTypeName();
+        System.out.println(oldName);
         String suffix = oldName.substring(oldName.lastIndexOf(".") + 1);
-        log.setResource(suffix);
+        String suffix2 = suffix.substring(0, suffix.indexOf("Service"));
+        log.setResource(suffix2);
 
         Object obj = null;
         try{
