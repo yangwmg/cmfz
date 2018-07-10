@@ -13,7 +13,7 @@ public class Log implements Serializable{
 
     private String logId;
     private String user;
-    @JSONField(format="yyyy-MM-dd")
+    @JSONField(format="yyyy-MM-dd hh:mm:ss")
     private Date time;
     private String resource;
     private String action;

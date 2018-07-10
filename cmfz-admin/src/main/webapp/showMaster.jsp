@@ -44,15 +44,14 @@
 								success:function(data){
 									$("#masterdialog").dialog("close");
 									$("#masterff").form("clear");
-									$("#masterfm").datagrid({
-										url:"${pageContext.request.contextPath}/master/allMaster",
-										fitColumns:true,
-										singleSelect:true,
-										toolbar:"#mastertb",
-										striped:true,//斑马线
-										pagination:true,//分页工具栏
-										pageList:[2,4,6,8,10],
-									});
+                                    $.messager.show({
+                                        title:"我的消息",
+                                        msg:"上师添加成功",
+                                        timeout:2000,
+                                        showType:"slide",
+                                    });
+									$("#masterfm").datagrid("reload");
+                                    $("#logfm").datagrid("reload");
 								},
 							});
 						},
@@ -94,15 +93,14 @@
 								success:function(data){
 									$("#masterdialog").dialog("close");
 									$("#masterff").form("clear");
-									$("#masterfm").datagrid({
-										url:"${pageContext.request.contextPath}/master/allMaster",
-										fitColumns:true,
-										singleSelect:true,
-										toolbar:"#mastertb",
-										striped:true,//斑马线
-										pagination:true,//分页工具栏
-										pageList:[2,4,6,8,10],
-									});
+                                    $.messager.show({
+                                        title:"我的消息",
+                                        msg:"上师信息修改成功",
+                                        timeout:2000,
+                                        showType:"slide",
+                                    });
+									$("#masterfm").datagrid("reload");
+                                    $("#logfm").datagrid("reload");
 								},
 							});
 						},
@@ -144,15 +142,14 @@
                                 success:function(data){
                                     $("#masterform").dialog("close");
                                     $("#masterff2").form("clear");
-                                    $("#masterfm").datagrid({
-                                        url:"${pageContext.request.contextPath}/master/allMaster",
-                                        fitColumns:true,
-                                        singleSelect:true,
-                                        toolbar:"#mastertb",
-                                        striped:true,//斑马线
-                                        pagination:true,//分页工具栏
-                                        pageList:[2,4,6,8,10],
+                                    $.messager.show({
+                                        title:"我的消息",
+                                        msg:"上师表导入成功",
+                                        timeout:2000,
+                                        showType:"slide",
                                     });
+                                    $("#masterfm").datagrid("reload");
+                                    $("#logfm").datagrid("reload");
                                 },
                             });
                         },

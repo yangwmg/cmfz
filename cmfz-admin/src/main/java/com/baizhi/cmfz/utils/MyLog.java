@@ -59,7 +59,7 @@ public class MyLog {
         Object[] args = pjp.getArgs();
         for (Object arg : args) {
             totalArg += arg;
-            totalArg += " ";
+            totalArg += ",";
         }
         log.setMessage(totalArg);
 

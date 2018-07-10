@@ -17,11 +17,11 @@
         <tr>
             <th data-options="field:'logId',width:100,align:'center',sorttable:true">日志编号</th>
             <th data-options="field:'user',width:50,align:'center'">操作用户</th>
-            <th data-options="field:'time',width:70,align:'center'">操作时间</th>
-			<th data-options="field:'resource',width:70,align:'center'">操作对象</th>
+            <th data-options="field:'time',width:100,align:'center'">操作时间</th>
+			<th data-options="field:'resource',width:50,align:'center'">操作对象</th>
             <th data-options="field:'action',width:50,align:'center'">操作类型</th>
             <th data-options="field:'message',width:200,align:'center'">详细信息</th>
-            <th data-options="field:'result',width:100,align:'center'">操作结果</th>
+            <th data-options="field:'result',width:60,align:'center'">操作结果</th>
         </tr>
     </thead>
 </table>

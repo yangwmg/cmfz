@@ -45,15 +45,14 @@
 								success:function(data){
 									$("#photodialog").dialog("close");
 									$("#photoff").form("clear");
-									$("#photofm").datagrid({
-										url:"${pageContext.request.contextPath}/photo/allPhoto",
-										fitColumns:true,
-										singleSelect:true,
-										toolbar:"#phototb",
-										striped:true,//斑马线
-										pagination:true,//分页工具栏
-										pageList:[2,4,6,8,10],
-									});
+                                    $.messager.show({
+                                        title:"我的消息",
+                                        msg:"轮播图添加成功",
+                                        timeout:2000,
+                                        showType:"slide",
+                                    });
+									$("#photofm").datagrid("reload");
+                                    $("#logfm").datagrid("reload");
 								},
 							});
 						},
@@ -95,15 +94,14 @@
 								success:function(data){
 									$("#photodialog").dialog("close");
 									$("#photoff").form("clear");
-									$("#photofm").datagrid({
-										url:"${pageContext.request.contextPath}/photo/allPhoto",
-										fitColumns:true,
-										singleSelect:true,
-										toolbar:"#phototb",
-										striped:true,//斑马线
-										pagination:true,//分页工具栏
-										pageList:[2,4,6,8,10],
-									});
+                                    $.messager.show({
+                                        title:"我的消息",
+                                        msg:"轮播图信息修改成功",
+                                        timeout:2000,
+                                        showType:"slide",
+                                    });
+									$("#photofm").datagrid("reload");
+                                    $("#logfm").datagrid("reload");
 								},
 							});
 						},
@@ -148,15 +146,14 @@
 								success:function(data){
 									$("#photodialog").dialog("close");
 									$("#photoff").form("clear");
-									$("#photofm").datagrid({
-										url:"${pageContext.request.contextPath}/photo/allPhoto",
-										fitColumns:true,
-										singleSelect:true,
-										toolbar:"#phototb",
-										striped:true,//斑马线
-										pagination:true,//分页工具栏
-										pageList:[2,4,6,8,10],
-									});
+                                    $.messager.show({
+                                        title:"我的消息",
+                                        msg:"轮播图删除成功",
+                                        timeout:2000,
+                                        showType:"slide",
+                                    });
+									$("#photofm").datagrid("reload");
+                                    $("#logfm").datagrid("reload");
 								},
 							});
 						},

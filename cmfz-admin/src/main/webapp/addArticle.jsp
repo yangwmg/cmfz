@@ -15,6 +15,13 @@
                         success:function(data){
                             $("#articleff").form("clear");
                             (editor).txt.clear();
+                            $.messager.show({
+                                title:"我的消息",
+                                msg:"文章创建成功",
+                                timeout:2000,
+                                showType:"slide",
+                            });
+                            $("#logfm").datagrid("reload");
                         },
                     });
                 },

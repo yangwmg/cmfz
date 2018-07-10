@@ -23,7 +23,7 @@
     </select>
 
     <select id="selectAllPhoto" resultType="Photo">
-        select * from t_photo limit #{begin}, #{end}
+        select * from t_photo order by uploadTime desc limit #{begin}, #{end}
     </select>
 
 </mapper>

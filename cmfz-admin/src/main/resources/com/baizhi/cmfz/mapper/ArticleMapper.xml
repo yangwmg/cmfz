@@ -11,7 +11,7 @@
     </select>
 
     <select id="selectAllArticle" resultType="Article">
-        select * from t_article limit #{begin}, #{end}
+        select * from t_article order by releaseTime desc limit #{begin}, #{end}
     </select>
 
     <select id="count" resultType="int">

@@ -16,7 +16,13 @@
                     width:250,
                     height:550,
                     resizable:true,
-                    href:"${pageContext.request.contextPath}/article/query?articleId="+row.articleId,
+                    onLoad:function(){
+                        $.get("${pageContext.request.contextPath}/article/query?articleId="+row.articleId,
+                            function(data){
+                                $("#articleDetailsDiv").html(data);
+                            });
+                    },
+                    href:"${pageContext.request.contextPath}/showArticle2.jsp",
                 });
             },
 		});

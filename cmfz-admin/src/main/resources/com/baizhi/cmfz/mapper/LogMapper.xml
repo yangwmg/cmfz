@@ -11,7 +11,7 @@
     </select>
 
     <select id="selectAllLog" resultType="Log">
-        select * from t_logs limit #{begin}, #{end}
+        select * from t_logs order by time desc limit #{begin}, #{end}
     </select>
 
 </mapper>

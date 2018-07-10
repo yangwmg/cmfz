@@ -15,7 +15,7 @@ public class Article implements Serializable{
     private String articleName;
     private String author;
     private String content;
-    @JSONField(format="yyyy-MM-dd")
+    @JSONField(format="yyyy-MM-dd hh:mm:ss")
     private Date releaseTime;
 
     public Article() {
