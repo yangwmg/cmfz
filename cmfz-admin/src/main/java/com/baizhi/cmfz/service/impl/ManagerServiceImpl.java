@@ -4,7 +4,7 @@ import com.baizhi.cmfz.dao.ManagerDao;
 import com.baizhi.cmfz.entity.Manager;
 import com.baizhi.cmfz.service.ManagerService;
 import com.baizhi.cmfz.utils.CreateValidateCodeUtil;
-import com.baizhi.cmfz.utils.EncryptionUtil;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -22,11 +22,11 @@ public class ManagerServiceImpl implements ManagerService{
 
     @Override
     @Transactional(propagation= Propagation.SUPPORTS, readOnly=true)
-    public Manager queryManager(String name, String password) {
+    public Manager queryManager(String name) {
 
         Manager manager = md.selectManager(name);
 
-        if(manager != null && manager.getPassword().equals(EncryptionUtil.encryptionCode(password + manager.getSalt()))){
+        if(manager != null){
             return manager;
         }
         return null;
@@ -36,7 +36,8 @@ public class ManagerServiceImpl implements ManagerService{
     public boolean addManager(String name, String password) {
 
         String salt = new CreateValidateCodeUtil(200,50,6).getCode();
-        Manager manager = new Manager(name, password, salt);
+        Manager manager = new Manager(name, new Md5Hash(password,salt,512).toString(), salt);
+        //manager.setPassword(new Md5Hash(password,salt,512).toString());
 
         int result = md.insertManager(manager);
 

@@ -1,9 +1,14 @@
 package com.baizhi.cmfz.utils;
 
 import com.baizhi.cmfz.entity.Manager;
+import com.baizhi.cmfz.service.ManagerService;
 import org.apache.shiro.authc.*;
-import org.apache.shiro.realm.AuthenticatingRealm;
+import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.UUID;
 
@@ -12,35 +17,55 @@ import java.util.UUID;
  *
  * Created by Administrator on 2018/7/10.
  */
-public class MyRealm extends AuthenticatingRealm{
+public class MyRealm extends AuthorizingRealm{
+
+    @Autowired
+    private ManagerService ms;
 
     /**
-     * 获取认证信息的方法
+     * 获取授权信息的方法(AuthorizingRealm)
+     * @param principals
+     * @return
+     */
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+
+        //1.获取角色用户信息
+        String username = (String)principals.getPrimaryPrincipal();
+
+        //2.封装查询到的授权信息
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        info.addRole("admin");
+        info.addRole("root");
+        info.addRole("user");
+
+        info.addStringPermission("user:add");
+        info.addStringPermission("user:query");
+
+        return info;
+        //return null;
+    }
+
+    /**
+     * 获取认证信息的方法(AuthenticatingRealm)
      * @param token
      * @return
      * @throws AuthenticationException
      */
-    @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
-        UsernamePasswordToken upToken = (UsernamePasswordToken)token;
-        String name = upToken.getUsername();
+        UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
 
-        Manager manager = new Manager();
+        String username = usernamePasswordToken.getUsername();
 
-        if(name.equals(manager.getName())) {
+        Manager manager = ms.queryManager(username);
 
-            /*if(account.isLocked()) {
-                throw new LockedAccountException("Account [" + account + "] is locked.");
-            }
-
-            if(account.isCredentialsExpired()) {
-                String msg = "The credentials for account [" + account + "] are expired";
-                throw new ExpiredCredentialsException(msg);
-            }*/
-
-            return new SimpleAuthenticationInfo(manager.getName(), manager.getPassword(), ByteSource.Util.bytes(manager.getSalt()), UUID.randomUUID().toString());
+        if(manager != null){
+            return new SimpleAuthenticationInfo(manager.getName(),
+                    manager.getPassword(),
+                    ByteSource.Util.bytes(manager.getSalt()),
+                    UUID.randomUUID().toString());
         }
+
         return null;
     }
 }

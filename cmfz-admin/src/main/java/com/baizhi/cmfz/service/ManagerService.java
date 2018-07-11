@@ -4,7 +4,7 @@ import com.baizhi.cmfz.entity.Manager;
 
 public interface ManagerService {
 
-	public Manager queryManager(String name, String password);
+	public Manager queryManager(String name);
 
 	public boolean addManager(String name, String password);
 	

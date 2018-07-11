@@ -142,15 +142,15 @@
                                 success:function(data){
                                     $("#masterform").dialog("close");
                                     $("#masterff2").form("clear");
-                                    $.messager.show({
-                                        title:"我的消息",
-                                        msg:"上师表导入成功",
-                                        timeout:2000,
-                                        showType:"slide",
-                                    });
+
                                     $("#masterfm").datagrid("reload");
                                     $("#logfm").datagrid("reload");
                                 },
+                            });$.messager.show({
+                                title:"我的消息",
+                                msg:"上师表导入成功",
+                                timeout:2000,
+                                showType:"slide",
                             });
                         },
                     },{

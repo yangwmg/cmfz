@@ -99,6 +99,9 @@
 							<label>
 								<input type="checkbox" id="isRememberUsername" name="statu" /> 记住用户名
 							</label>
+							<label>
+								<input type="checkbox" id="isRememberMe" name="rememberMe" /> 七天免登陆
+							</label>
 						</td>
 					</tr>
 					<tr>

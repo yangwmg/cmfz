@@ -2,6 +2,12 @@ package com.baizhi.cmfz.controller;
 
 import com.baizhi.cmfz.entity.Manager;
 import com.baizhi.cmfz.service.ManagerService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,21 +32,34 @@ public class ManagerController{
     private ManagerService ms;
 
     @RequestMapping("/login")
-    public String login(String name, String password, boolean statu, HttpServletResponse response, HttpServletRequest request) throws Exception {
+    public String login(String name, String password, boolean statu, boolean rememberMe, HttpServletResponse response, HttpServletRequest request) throws Exception {
+        //在web环境中安全管理器会自动进行初始化
+        Subject subject = SecurityUtils.getSubject();
+        try {
+            subject.login(new UsernamePasswordToken(name, password, rememberMe));
 
-        Manager manager = ms.queryManager(name, password);
+            Manager manager = ms.queryManager(name);
 
-        if(manager != null){
-            if(statu){
-                Cookie cookieName = new Cookie("name", URLEncoder.encode(name, "utf-8"));
-                cookieName.setMaxAge(60*60*24*7);
-                response.addCookie(cookieName);
+            if(manager != null){
+                if(statu){
+                    Cookie cookieName = new Cookie("name", URLEncoder.encode(name, "utf-8"));
+                    cookieName.setMaxAge(60*60*24*7);
+                    response.addCookie(cookieName);
 
-                request.getSession().setAttribute("manager", manager);
+                    request.getSession().setAttribute("manager", manager);
+                }
             }
             return "main";
+        } catch (UnknownAccountException e) {
+            e.printStackTrace();
+            return "login";
+        } catch (IncorrectCredentialsException e) {
+            e.printStackTrace();
+            return "login";
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+            return "login";
         }
-        return "login";
     }
 
     @RequestMapping("/loginOut")

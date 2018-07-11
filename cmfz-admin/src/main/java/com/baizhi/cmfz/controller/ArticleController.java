@@ -1,6 +1,5 @@
 package com.baizhi.cmfz.controller;
 
-import com.baizhi.cmfz.entity.Article;
 import com.baizhi.cmfz.entity.RichText;
 import com.baizhi.cmfz.service.ArticleService;
 import org.apache.commons.io.FilenameUtils;
