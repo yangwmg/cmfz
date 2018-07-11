@@ -14,6 +14,9 @@ import java.io.File;
 import java.util.Map;
 
 /**
+ * @program: cmfz
+ * @description: 轮播图
+ * @author: yp
  * Created by Administrator on 2018/7/4.
  */
 @Controller
@@ -23,6 +26,12 @@ public class PhotoController {
     @Autowired
     private PhotoService ps;
 
+    /**
+     * @Description 查询所有轮播图
+     * @Author yp
+     * @Param nowPage:当前页码, pageSize:每页显示行数
+     * @Exception Exception
+     */
     @RequestMapping("/allPhoto")
     @ResponseBody
     public Map<String, Object> allPhoto(@RequestParam("page")Integer nowPage, @RequestParam("rows")Integer pageSize) throws Exception {
@@ -30,6 +39,12 @@ public class PhotoController {
         return ps.queryPhoto(nowPage, pageSize);
     }
 
+    /**
+     * @Description 删除轮播图
+     * @Author yp
+     * @Param photoId:要删除的轮播图ID
+     * @Exception Exception
+     */
     @RequestMapping(value="/remove")
     @ResponseBody
     public void remove(@RequestParam("photoId")String photoId) throws Exception {
@@ -37,6 +52,12 @@ public class PhotoController {
         ps.removePhoto(photoId);
     }
 
+    /**
+     * @Description 修改轮播图信息
+     * @Author yp
+     * @Param 新的轮播图信息
+     * @Exception Exception
+     */
     @RequestMapping(value="/update")
     @ResponseBody
     public void update(@RequestParam("photoId")String photoId, @RequestParam("description")String description, @RequestParam("status")Integer status, @RequestParam("photoName")String photoName) throws Exception {
@@ -44,6 +65,12 @@ public class PhotoController {
         ps.modifyPhoto(photoId, description, status, photoName);
     }
 
+    /**
+     * @Description 添加轮播图
+     * @Author yp
+     * @Param 表单提交的轮播图信息, session:作用域, myFile:上传轮播图图片
+     * @Exception Exception
+     */
     @RequestMapping(value="/add",method = RequestMethod.POST)
     @ResponseBody
     public void add(MultipartFile myFile, HttpSession session, @RequestParam("description")String description, @RequestParam("status")Integer status) throws Exception {

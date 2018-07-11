@@ -17,6 +17,9 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
+ * @program: cmfz
+ * @description: 文章
+ * @author: yp
  * Created by Administrator on 2018/7/4.
  */
 @Controller
@@ -26,6 +29,12 @@ public class ArticleController {
     @Autowired
     private ArticleService as;
 
+    /**
+     * @Description 查询所有文章
+     * @Author yp
+     * @Param nowPage:当前页码, pageSize:每页显示行数
+     * @Exception Exception
+     */
     @RequestMapping("/allArticle")
     @ResponseBody
     public Map<String, Object> allArticle(@RequestParam("page")Integer nowPage, @RequestParam("rows")Integer pageSize) throws Exception {
@@ -33,6 +42,12 @@ public class ArticleController {
         return as.queryArticle(nowPage, pageSize);
     }
 
+    /**
+     * @Description 根据ID查询文章
+     * @Author yp
+     * @Param articleId:文章ID
+     * @Exception Exception
+     */
     @RequestMapping("/query")
     @ResponseBody
     public String query(@RequestParam("articleId")String articleId) throws Exception {
@@ -40,6 +55,12 @@ public class ArticleController {
         return as.queryArticle(articleId).getContent();
     }
 
+    /**
+     * @Description 创建文章
+     * @Author yp
+     * @Param articleName:文章标题, author:作者, content:文章内容
+     * @Exception Exception
+     */
     @RequestMapping(value="/add")
     @ResponseBody
     public void add(@RequestParam("articleName")String articleName, @RequestParam("author")String author, @RequestParam("content")String content) throws Exception {
@@ -47,6 +68,12 @@ public class ArticleController {
         as.addArticle(articleName, author, content);
     }
 
+    /**
+     * @Description 上传文章中的图片
+     * @Author yp
+     * @Param files:图片集合, request:获得当前项目路径
+     * @Exception Exception
+     */
     @RequestMapping(value="/upload")
     @ResponseBody
     public RichText upload(@RequestParam("files")MultipartFile[] files, HttpServletRequest request) throws Exception {

@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * @program: cmfz
+ * @description: 用户
+ * @author: yp
  * Created by Administrator on 2018/7/4.
  */
 @Controller
@@ -22,6 +25,12 @@ public class UserController {
     @Autowired
     private UserService us;
 
+    /**
+     * @Description 查询所有用户
+     * @Author yp
+     * @Param null
+     * @Exception Exception
+     */
     @RequestMapping("/allUser")
     @ResponseBody
     public ECharts allUser() throws Exception {

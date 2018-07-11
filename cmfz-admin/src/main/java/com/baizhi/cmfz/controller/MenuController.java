@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 /**
+ * @program: cmfz
+ * @description: 菜单
+ * @author: yp
  * Created by Administrator on 2018/7/4.
  */
 @Controller
@@ -19,6 +22,12 @@ public class MenuController {
     @Autowired
     private MenuService ms;
 
+    /**
+     * @Description 查询所有菜单
+     * @Author yp
+     * @Param null
+     * @Exception Exception
+     */
     @RequestMapping("/allMenuOne")
     @ResponseBody
     public List<Menu> allMenuOne() throws Exception {

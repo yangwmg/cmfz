@@ -22,6 +22,9 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 /**
+ * @program: cmfz
+ * @description: 管理员
+ * @author: yp
  * Created by Administrator on 2018/7/4.
  */
 @Controller
@@ -31,6 +34,12 @@ public class ManagerController{
     @Autowired
     private ManagerService ms;
 
+    /**
+     * @Description 管理员登录
+     * @Author yp
+     * @Param name:管理员名称, password:密码, statu:是否记住姓名, rememberMe:7天免登录, request:获得session作用域, response:将数据写入Cookie
+     * @Exception Exception
+     */
     @RequestMapping("/login")
     public String login(String name, String password, boolean statu, boolean rememberMe, HttpServletResponse response, HttpServletRequest request) throws Exception {
         //在web环境中安全管理器会自动进行初始化
@@ -62,6 +71,12 @@ public class ManagerController{
         }
     }
 
+    /**
+     * @Description 登出
+     * @Author yp
+     * @Param request:获得session作用域
+     * @Exception Exception
+     */
     @RequestMapping("/loginOut")
     public String loginOut(HttpServletRequest request) throws Exception {
 
@@ -72,6 +87,12 @@ public class ManagerController{
         return "login";
     }
 
+    /**
+     * @Description 管理员注册
+     * @Author yp
+     * @Param name:名称, password:密码
+     * @Exception Exception
+     */
     @RequestMapping("/regist")
     @ResponseBody
     public String regist(String name, String password) throws Exception {
@@ -84,6 +105,12 @@ public class ManagerController{
         return "error";
     }
 
+    /**
+     * @Description 验证验证码
+     * @Author yp
+     * @Param session:作用域, code:验证码
+     * @Exception Exception
+     */
     @RequestMapping("/checkCode")
     @ResponseBody
     public String checkCode(String code,HttpSession session) throws Exception{
@@ -94,6 +121,12 @@ public class ManagerController{
         return "验证码错误";
     }
 
+    /**
+     * @Description 查询所有文章
+     * @Author yp
+     * @Param request:获得session作用域, map:将数据存入Cookie
+     * @Exception Exception
+     */
     @RequestMapping("/toLogin")
     public String toLogin(HttpServletRequest request, ModelMap map) throws Exception {
         Cookie[] cookies = request.getCookies();
