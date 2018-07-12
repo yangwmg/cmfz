@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <script type="text/javascript">
 	$(function(){
 		$("#masterfm").datagrid({
@@ -201,10 +202,12 @@
 		data-options="iconCls:'icon-add',plain:true,text:'新增上师'"></a>
     <a href="#" class="easyui-linkbutton" id="masterupdate"
        data-options="iconCls:'icon-edit',plain:true,text:'修改上师信息'"></a>
+    <shiro:hasRole name="root">
     <a href="#" class="easyui-linkbutton" id="masteraddmore"
        data-options="iconCls:'icon-add',plain:true,text:'批量插入'"></a>
     <a href="#" class="easyui-linkbutton" id="masterexport"
        data-options="iconCls:'icon-edit',plain:true,text:'信息导出'"></a>
+    </shiro:hasRole>
     <input id="masterss" class="easyui-searchbox" style="width:300px"
            data-options="searcher:qq,prompt:'请您输入需要模糊查询的内容',menu:'#mastermm'"></input>
     <div id="mastermm" style="width:120px">

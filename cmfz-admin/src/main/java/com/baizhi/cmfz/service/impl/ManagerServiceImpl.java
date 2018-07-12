@@ -2,6 +2,8 @@ package com.baizhi.cmfz.service.impl;
 
 import com.baizhi.cmfz.dao.ManagerDao;
 import com.baizhi.cmfz.entity.Manager;
+import com.baizhi.cmfz.entity.SysPermission;
+import com.baizhi.cmfz.entity.SysRole;
 import com.baizhi.cmfz.service.ManagerService;
 import com.baizhi.cmfz.utils.CreateValidateCodeUtil;
 import org.apache.shiro.crypto.hash.Md5Hash;
@@ -9,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by Administrator on 2018/7/4.
@@ -30,6 +34,22 @@ public class ManagerServiceImpl implements ManagerService{
             return manager;
         }
         return null;
+    }
+
+    @Override
+    public List<SysRole> queryRolesByName(String name) {
+
+        List<SysRole> roles = md.selectRolesByName(name);
+
+        return roles;
+    }
+
+    @Override
+    public List<SysPermission> queryPermissionsByName(String name) {
+
+        List<SysPermission> permissions = md.selectPermissionsByName(name);
+
+        return permissions;
     }
 
     @Override

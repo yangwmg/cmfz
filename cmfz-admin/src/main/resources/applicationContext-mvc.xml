@@ -47,10 +47,10 @@
     </bean>
 
     <!-- 切换动态代理方式  cglib -->
-    <!--<aop:config proxy-target-class="true"></aop:config>-->
+    <aop:config proxy-target-class="true"></aop:config>
 
     <!--  -->
-    <!--<bean id="authorizationAttributeSourceAdvisor" class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+    <bean id="authorizationAttributeSourceAdvisor" class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"></property>
-    </bean>-->
+    </bean>
 </beans>

@@ -1,6 +1,8 @@
 package com.baizhi.cmfz.utils;
 
 import com.baizhi.cmfz.entity.Manager;
+import com.baizhi.cmfz.entity.SysPermission;
+import com.baizhi.cmfz.entity.SysRole;
 import com.baizhi.cmfz.service.ManagerService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -10,6 +12,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -34,15 +37,19 @@ public class MyRealm extends AuthorizingRealm{
 
         //2.封装查询到的授权信息
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        info.addRole("admin");
-        info.addRole("root");
-        info.addRole("user");
+        List<SysRole> roles = ms.queryRolesByName(username);
+        List<SysPermission> permissions = ms.queryPermissionsByName(username);
 
-        info.addStringPermission("user:add");
-        info.addStringPermission("user:query");
+        for (SysRole role : roles) {
+            System.out.println(role);
+            info.addRole(role.getRoleTag());
+        }
+        for (SysPermission permission : permissions) {
+            System.out.println(permission);
+            info.addStringPermission(permission.getPermissionTag());
+        }
 
         return info;
-        //return null;
     }
 
     /**

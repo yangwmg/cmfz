@@ -18,4 +18,58 @@
         select * from t_manager where name = #{name}
     </select>
 
+    <select id="selectRolesByName" resultType="SysRole">
+        select
+            id id,
+            role_name roleName,
+            role_tag roleTag
+        from
+            sys_role
+        where id in (
+            select
+                role_id
+            from
+                sys_user_role
+            where user_id = (
+                    select
+                        id
+                    from
+                        t_manager
+                    where
+                        name = #{name}
+            )
+        )
+    </select>
+
+    <select id="selectPermissionsByName" resultType="SysPermission">
+        select
+            id id,
+            resource_name resourceName,
+            resource_tag resourceTag,
+            resource_url resourceUrl,
+            permission_tag permissionTag
+        from
+            sys_resource
+        where id in (
+            select
+                permission_id
+            from
+                sys_role_permission
+            where role_id = (
+                select
+                    role_id
+                from
+                    sys_user_role
+                where user_id = (
+                    select
+                        id
+                    from
+                        t_manager
+                    where
+                        name = #{name}
+                )
+            )
+        )
+    </select>
+
 </mapper>
